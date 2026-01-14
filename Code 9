@@ -1,0 +1,17 @@
+from itertools import combinations
+
+n = int(input().strip())
+letters = input().split()
+k = int(input().strip())
+
+indices = [i for i in range(n) if letters[i] == 'a']
+
+total = 0
+count = 0
+
+for comb in combinations(range(n), k):
+    total += 1
+    if any(i in indices for i in comb):
+        count += 1
+
+print(round(count / total, 4))
