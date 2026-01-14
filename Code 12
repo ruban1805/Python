@@ -1,0 +1,17 @@
+import re
+
+n = int(input())
+
+for _ in range(n):
+    card = input().strip()
+
+    # Rule 1–5: pattern check
+    pattern = r'^(4|5|6)\d{3}(-?\d{4}){3}$'
+
+    # Rule 6: no 4 or more consecutive repeated digits
+    repeat = r'(\d)\1{3,}'
+
+    if re.match(pattern, card) and not re.search(repeat, card.replace('-', '')):
+        print("Valid")
+    else:
+        print("Invalid")
