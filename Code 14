@@ -1,0 +1,20 @@
+a_real, a_img = map(float, input().split())
+b_real, b_img = map(float, input().split())
+
+a = complex(a_real, a_img)
+b = complex(b_real, b_img)
+
+results = [
+    a + b,
+    a - b,
+    a * b,
+    a / b,
+    complex(abs(a), 0),
+    complex(abs(b), 0)
+]
+
+for z in results:
+    r = z.real
+    i = z.imag
+    sign = '+' if i >= 0 else '-'
+    print(f"{r:.2f}{sign}{abs(i):.2f}i")
