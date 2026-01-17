@@ -1,0 +1,16 @@
+import itertools
+
+k, m = map(int, input().split())
+lists = []
+
+for _ in range(k):
+    data = list(map(int, input().split()))
+    lists.append(data[1:])
+
+max_val = 0
+for combo in itertools.product(*lists):
+    value = sum(x*x for x in combo) % m
+    if value > max_val:
+        max_val = value
+
+print(max_val)
