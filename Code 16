@@ -1,0 +1,10 @@
+s = input().strip()
+k = int(input())
+
+for i in range(0, len(s), k):
+    sub = s[i:i+k]
+    result = ""
+    for ch in sub:
+        if ch not in result:
+            result += ch
+    print(result)
