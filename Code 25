@@ -1,0 +1,78 @@
+n = int(input())
+towns = []
+
+for _ in range(n):
+    town_name = input().strip()
+    office_count = int(input())
+    offices = []
+
+    for _ in range(office_count):
+        p, wmin, wmax = map(int, input().split())
+        packages = []
+        for _ in range(p):
+            pid, weight = input().split()
+            packages.append((pid, int(weight)))
+        offices.append([wmin, wmax, packages])
+
+    towns.append({"name": town_name, "offices": offices})
+
+q = int(input())
+
+for _ in range(q):
+    t = int(input())
+
+    # Query type 1: Print town
+    if t == 1:
+        name = input().strip()
+        for town in towns:
+            if town["name"] == name:
+                print(f"{name}:")
+                for i, office in enumerate(town["offices"]):
+                    print(f"\t{i}:")
+                    for pkg in office[2]:
+                        print(f"\t\t{pkg[0]}")
+                break
+
+    # Query type 2: Transaction
+    elif t == 2:
+        t1, i1, t2, i2 = input().split()
+        i1, i2 = int(i1), int(i2)
+
+        town1 = None
+        town2 = None
+        for town in towns:
+            if town["name"] == t1:
+                town1 = town
+            if town["name"] == t2:
+                town2 = town
+
+        office1 = town1["offices"][i1]
+        office2 = town2["offices"][i2]
+
+        wmin, wmax = office2[0], office2[1]
+        accepted = []
+        rejected = []
+
+        for pkg in office1[2]:
+            if wmin <= pkg[1] <= wmax:
+                accepted.append(pkg)
+            else:
+                rejected.append(pkg)
+
+        office1[2] = rejected
+        office2[2].extend(accepted)
+
+    # Query type 3: Town with most packages
+    elif t == 3:
+        max_count = -1
+        best_town = None
+
+        for town in towns:
+            total = 0
+            for office in town["offices"]:
+                total += len(office[2])
+            if total > max_count:
+                max_count = total
+                best_town = town["name"]
+
+        print(f"Town with the most number of packages is {best_town}")
