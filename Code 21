@@ -1,0 +1,37 @@
+n = int(input())
+arr = [input().strip() for _ in range(n)]
+
+# Lexicographically increasing
+for i in range(n):
+    for j in range(i + 1, n):
+        if arr[i] > arr[j]:
+            arr[i], arr[j] = arr[j], arr[i]
+for s in arr:
+    print(s)
+print()
+
+# Lexicographically decreasing
+for i in range(n):
+    for j in range(i + 1, n):
+        if arr[i] < arr[j]:
+            arr[i], arr[j] = arr[j], arr[i]
+for s in arr:
+    print(s)
+print()
+
+# By number of distinct characters, then lexicographically
+for i in range(n):
+    for j in range(i + 1, n):
+        if len(set(arr[i])) > len(set(arr[j])) or (len(set(arr[i])) == len(set(arr[j])) and arr[i] > arr[j]):
+            arr[i], arr[j] = arr[j], arr[i]
+for s in arr:
+    print(s)
+print()
+
+# By length, then lexicographically
+for i in range(n):
+    for j in range(i + 1, n):
+        if len(arr[i]) > len(arr[j]) or (len(arr[i]) == len(arr[j]) and arr[i] > arr[j]):
+            arr[i], arr[j] = arr[j], arr[i]
+for s in arr:
+    print(s)
