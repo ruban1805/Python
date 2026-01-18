@@ -1,0 +1,7 @@
+from collections import Counter
+
+s = input().strip()
+count = Counter(s)
+
+for char, freq in sorted(count.items(), key=lambda x: (-x[1], x[0]))[:3]:
+    print(char, freq)
