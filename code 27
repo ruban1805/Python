@@ -1,0 +1,15 @@
+word = input("Enter th word:")
+word = word.upper()
+vowels = 'aeiou'
+vowel_count = 0
+consonant_count = 0
+for char in word:
+    if char.isalpha():
+        if char in vowels:
+            vowels +=1
+    else:
+        consonant +=1
+if word[0] == word[-1] and vowel_count == consonant_count:
+    print("It is special.")
+else:
+    print("It not is special.")
