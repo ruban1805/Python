@@ -1,0 +1,10 @@
+import java.util.*
+
+fun isLeap(year: Int): Boolean {
+    return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)
+}
+
+fun main(args: Array<String>) {
+    val year = readLine()!!.toInt()
+    println(isLeap(year))
+}
